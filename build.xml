@@ -7,6 +7,9 @@
     <property name="args.rellinks" value="nofamily"/>
     <property name="preprocess.copy-image.skip" value="true"/>
     <property name="preprocess.copy-html.skip" value="true"/>
+    <condition property="ooxml.topic.numbers" else="true">
+      <isset property="ooxml.topic.numbers"/>
+    </condition>
   </target>
   
   <target name="dita2docx"
@@ -55,6 +58,7 @@
           in="${dita.temp.dir.fullpath}/${dita.map.filename.root}_MERGED.xml"
           out="${clean.input.file}"
           force="true">
+      <param name="topic.numbers" expression="${ooxml.topic.numbers}" type="BOOLEAN"/>
       <xmlcatalog refid="dita.catalog"/>
     </xslt>
 
