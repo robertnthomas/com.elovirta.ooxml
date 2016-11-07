@@ -39,9 +39,10 @@
       
       <xsl:comment>images and links</xsl:comment>
       <xsl:for-each select="//@x:image-number">
+        <!-- Tagsmiths: Use replace() to change .svg file extensions to .png -->
         <Relationship Id="rId{.}"
           Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-          Target="media/{../@href}"/>
+          Target="media/{../replace(@href, '\.svg$', '.png', 'i')}"/>
       </xsl:for-each>
       
       <xsl:for-each select="//*[@x:external-link-number]">

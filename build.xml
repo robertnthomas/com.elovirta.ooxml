@@ -130,9 +130,14 @@
     <copy todir="${dita.temp.dir}/docx/word/media">
       <fileset dir="${user.input.dir}/" includesfile="${dita.temp.dir}/${imagefile}">
         <exclude name="**/*.mml"/>
-        <exclude name="**/*.svg"/>
+        <!-- Tagsmiths: svg-to-png conversion from plugin com.tagsmiths.ooxml.svg2png
+             requires .svg files to be present in the media directory. After conversion,
+             that plugin deletes the .svg files from the media directory. -->
+        <!--<exclude name="**/*.svg"/>-->
       </fileset>
     </copy>
+    <!-- Tagsmiths: Call target in com.tagsmiths.ooxml.svg2png -->    
+    <antcall target="svg2png"/>
   </target>
   <target name="docx.package.media.check">
     <condition property="media.skip">

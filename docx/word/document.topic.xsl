@@ -424,7 +424,8 @@
            <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
              <pic:pic>
                <pic:nvPicPr>
-                 <pic:cNvPr id="0" name="media/{@href}"/>
+                 <!-- Tagsmiths: Use replace() to change .svg file extensions to .png -->
+                 <pic:cNvPr id="0" name="media/{replace(@href, '\.svg$', '.png', 'i')}"/>
                  <pic:cNvPicPr/>
                </pic:nvPicPr>
                <pic:blipFill>
